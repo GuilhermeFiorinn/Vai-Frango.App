@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./headerButtons.module.css";
+import Calendar from "./Calendar";
 
 export default function Home() {
 	const [active, setActive] = useState<"Treino" | "Agenda" | "Perfil">("Treino");
@@ -23,9 +24,10 @@ export default function Home() {
 				</div>
 			</div>
 
+			{/* Header não-fixo: remove 'fixed' e top */}
 			<header
-				className="w-full fixed left-0 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-black/70 dark:border-gray-800 z-50"
-				style={{ top: `${bannerHeight}px`, height: `${headerHeight}px` }}
+				className="w-full bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-black/70 dark:border-gray-800"
+				style={{ height: `${headerHeight}px` }}
 			>
 				<div className="max-w-4xl mx-auto px-6 py-3 h-full flex items-center">
 					<nav className="w-full">
@@ -59,12 +61,18 @@ export default function Home() {
 				</div>
 			</header>
 
+			{/* Main ajustado: sem paddingTop que compensava header fixo */}
 			<main
-				className="max-w-4xl mx-auto px-4 flex items-start justify-center min-h-[calc(100vh-64px)]"
-				style={{ paddingTop: `${bannerHeight + headerHeight}px` }}
+				className="max-w-4xl mx-auto px-4 flex items-start justify-center min-h-screen"
 			>
 				<div className="w-full flex items-center justify-center py-12">
-					<h1 className="text-2xl font-bold">{active}</h1>
+					{active === "Agenda" ? (
+						<div className="w-full">
+							<Calendar />
+						</div>
+					) : (
+						<h1 className="text-2xl font-bold">{active}</h1>
+					)}
 				</div>
 			</main>
 		</div>
