@@ -1,6 +1,15 @@
 {
-  "nome": "Carlos Andrade",
-  "email": "carlos.andrade@email.com",
+  "nome": "Frangolino",
+  "email": "frangolino@email.com",
+  "fotoUrl": "/frangolino.png",
+  "membroDesde": "2024-01-15",
   "alturaCm": 178,
-  "pesoKg": 76.5
+  "pesoKg": 76.5,
+  "objetivo": "Hipertrofia Muscular",
+  "medidas": {
+    "peitoCm": 105,
+    "cinturaCm": 82,
+    "antebracoDCm": 35,
+    "antebracoECm": 34.5
+  }
 }

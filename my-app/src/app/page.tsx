@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./headerButtons.module.css";
 import Calendar from "./Calendar";
 import Profile from "./Profile";
+import AbaTreino from "./pageTreino";
 
 export default function Home() {
 	const [active, setActive] = useState<"Treino" | "Agenda" | "Perfil">("Treino");
@@ -14,7 +15,7 @@ export default function Home() {
 	return (
 		<div className="min-h-screen bg-background text-foreground">	{/*Campo da imagem acima do header */}
 			<div
-				className="w-full bg-gray-100 dark:bg-gray-900"
+				className="w-full bg-[#F89839]"
 				style={{ height: bannerHeight }}
 			>
 				<div className="max-w-4xl mx-auto px-6 h-full flex items-center justify-center">
@@ -65,9 +66,9 @@ export default function Home() {
 				className="max-w-4xl mx-auto px-4 flex items-start justify-center min-h-screen"
 			>
 				<div className="w-full flex items-center justify-center py-12">
-                    {active === "Treino" && <h1 className="text-2xl font-bold">Treino</h1>}
                     {active === "Agenda" && <Calendar />}
                     {active === "Perfil" && <Profile />}
+					{active === "Treino" && <AbaTreino />}
                 </div>
 			</main>
 		</div>

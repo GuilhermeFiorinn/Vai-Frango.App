@@ -1,15 +1,25 @@
 {
-  "2025-10-01": [
+  "2025-10-01": [],
+  "2025-10-08": [],
+  "2025-10-02": [],
+  "2025-10-09": [
     {
       "name": "Agachamento",
-      "duration": "2 min"
-    }
-  ],
-  "2025-10-02": [
+      "duration": "2 min",
+      "concluido": false,
+      "finished": false
+    },
     {
-      "name": "Prancha Abdominal",
-      "duration": "1 min"
+      "name": "Agachamento",
+      "duration": "2 min",
+      "finished": false
+    },
+    {
+      "name": "Polichinelo",
+      "duration": "3 min",
+      "finished": false
     }
   ],
-  "2025-10-31": []
+  "2025-10-07": [],
+  "2025-10-10": []
 }

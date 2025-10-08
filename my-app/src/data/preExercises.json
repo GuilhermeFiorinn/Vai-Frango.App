@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nome": "Polichinelo",
+    "duracao": "60 segundos"
+  },
+  {
+    "id": 2,
+    "nome": "Agachamento sem Peso",
+    "duracao": "45 segundos"
+  },
+  {
+    "id": 3,
+    "nome": "Flexão de Braços (ou de joelhos)",
+    "duracao": "45 segundos"
+  },
+  {
+    "id": 4,
+    "nome": "Prancha Abdominal",
+    "duracao": "60 segundos"
+  }
+]

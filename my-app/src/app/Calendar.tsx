@@ -62,7 +62,7 @@ export default function Calendar() {
 
   function closeModal() {
     setIsModalOpen(false);
-    setSelected(null); // <-- ADICIONE ESTA LINHA
+    setSelected(null);
   }
 
   function addExerciseFor(date: Date, presetId: number) {
@@ -71,7 +71,7 @@ export default function Calendar() {
     const key = formatKey(date);
     const duration = preset.duracaoMinutos ? `${preset.duracaoMinutos} min` : "";
     setEvents(prev => {
-      const next = addExercise(prev, key, { name: preset.nome, duration });
+      const next = addExercise(prev, key, { name: preset.nome, duration, finished: false });
       fetch("/api/calendar", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ dateKey: key, exercises: next[key] }) }).catch(() => {});
       return next;
     });
@@ -130,12 +130,19 @@ export default function Calendar() {
               const exercisesForDay = events[dateKey];
               return (
                 <div key={dateKey} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <h3 className="font-semibold text-orange-600 dark:text-orange-400">{date.toLocaleDateString("pt-BR", { weekday: 'long', day: '2-digit', month: 'long' })}</h3>
+                  <h3 className="font-semibold text-[#DB8237]">
+                    {date.toLocaleDateString("pt-BR", { weekday: 'long', day: '2-digit', month: 'long' })}
+                  </h3>
                   <ul className="mt-2 space-y-1">
                     {exercisesForDay.map((exercise, index) => (
                       <li key={index} className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-300">
                         <span>{exercise.name} {exercise.duration ? `— ${exercise.duration}` : ""}</span>
-                        <button onClick={() => removeEvent(dateKey, index)} className="text-red-500 hover:text-red-700 text-xs font-semibold">REMOVER</button>
+                        <button 
+                            onClick={() => removeEvent(dateKey, index)} 
+                            className="font-semibold text-[#DB8237] hover:opacity-80 transition-opacity text-xs"
+                        >
+                          REMOVER
+                        </button>
                       </li>
                     ))}
                   </ul>

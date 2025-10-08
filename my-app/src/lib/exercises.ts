@@ -1,6 +1,7 @@
 export type Exercise = {
   name: string;
-  duration?: string; // free text, e.g. '10 min' or '00:30'
+  duration?: string;
+  finished: boolean;
 };
 
 const STORAGE_KEY = "vf-calendar-events";
@@ -24,7 +25,7 @@ export function loadEvents(): Record<string, Exercise[]> {
       if (isExerciseArray(val)) {
         out[k] = val;
       } else if (isStringArray(val)) {
-        out[k] = val.map((s) => ({ name: s, duration: "" }));
+        out[k] = val.map((s) => ({ name: s, duration: "", finished: false }));
       } else {
         out[k] = [];
       }
