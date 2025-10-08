@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nome": "Agachamento",
+    "duracaoMinutos": 2
+  },
+  {
+    "id": 2,
+    "nome": "Flexão de Braços",
+    "duracaoMinutos": 1.5
+  },
+  {
+    "id": 3,
+    "nome": "Prancha Abdominal",
+    "duracaoMinutos": 1
+  },
+  {
+    "id": 4,
+    "nome": "Corrida Parada",
+    "duracaoMinutos": 5
+  },
+  {
+    "id": 5,
+    "nome": "Polichinelo",
+    "duracaoMinutos": 3
+  },
+  {
+    "id": 6,
+    "nome": "Alongamento do Quadríceps",
+    "duracaoMinutos": 2
+  },
+  {
+    "id": 7,
+    "nome": "Alongamento de Ombros e Braços",
+    "duracaoMinutos": 2
+  }
+]

@@ -61,7 +61,6 @@ export default function Home() {
 				</div>
 			</header>
 
-			{/* Main ajustado: sem paddingTop que compensava header fixo */}
 			<main
 				className="max-w-4xl mx-auto px-4 flex items-start justify-center min-h-screen"
 			>
