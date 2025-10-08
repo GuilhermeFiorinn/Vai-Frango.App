@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const data = readData();
-    // body should be { dateKey: string, exercises: [{name,duration},...] }
+    // O body deve ser { dateKey: string, exercises: [{name,duration},...] }
     if (!body || !body.dateKey) return NextResponse.json({ ok: false }, { status: 400 });
     data[body.dateKey] = body.exercises || [];
     const ok = writeData(data);

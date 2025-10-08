@@ -60,18 +60,10 @@ export default function Calendar() {
     setNewExerciseName("");
   }
 
-  // ======================================================================
-  // ======================= INÍCIO DA CORREÇÃO ===========================
-  // ======================================================================
-  
   function closeModal() {
     setIsModalOpen(false);
     setSelected(null); // <-- ADICIONE ESTA LINHA
   }
-
-  // ======================================================================
-  // ======================== FIM DA CORREÇÃO =============================
-  // ======================================================================
 
   function addExerciseFor(date: Date, presetId: number) {
     const preset = presets.find(p => p.id === presetId);
