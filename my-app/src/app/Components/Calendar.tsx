@@ -20,17 +20,32 @@ export default function Calendar() {
   const [events, setEvents] = useState<Record<string, string[]>>({});
 
   // load from localStorage
+  // useEffect(() => {
+  //   try {
+  //     const raw = localStorage.getItem("vf-calendar-events");
+  //     if (raw) setEvents(JSON.parse(raw));
+  //   } catch { }
+  // }, []);
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("vf-calendar-events");
-      if (raw) setEvents(JSON.parse(raw));
-    } catch {}
+    async function fetchCalendar() {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/calendar");
+        const data = await response.json();
+
+        setEvents(data.created);
+      } catch (error) {
+        console.error("Erros foram cometidos: ", error);
+      }
+    }
+
+    fetchCalendar();
   }, []);
 
   useEffect(() => {
     try {
       localStorage.setItem("vf-calendar-events", JSON.stringify(events));
-    } catch {}
+      console.log(JSON.stringify(events));
+    } catch { }
   }, [events]);
 
   const monthInfo = useMemo(() => {
@@ -59,9 +74,24 @@ export default function Calendar() {
   function addEventFor(date: Date) {
     const key = formatKey(date);
     const text = prompt(`Novo evento para ${key}:`);
+
     if (!text) return;
+    saveCalendar(key, text);
     setEvents((prev) => ({ ...prev, [key]: [...(prev[key] || []), text] }));
   }
+
+  const saveCalendar = async (key: string, text: string) => {
+    const response = await fetch('http://127.0.0.1:8000/api/calendar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ date: key, text: text }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
 
   function removeEvent(dateKey: string, index: number) {
     setEvents((prev) => {
@@ -113,25 +143,25 @@ export default function Calendar() {
           const isSelected = selected && formatKey(selected) === key;
           return (
             <div
-                key={key}
-                className={
-                  "relative h-20 p-1 border rounded flex flex-col justify-start " +
-                  (isSelected
-                    ? "bg-orange-100 border-orange-300"
-                    : "bg-white dark:bg-gray-800")
-                }
-              >
-                <div className="flex items-center justify-start">
-                  <button
-                    onClick={() => setSelected(dt)}
-                    className="text-base font-semibold"
-                    aria-label={`Selecionar dia ${key}`}
-                  >
-                    {dt.getDate()}
-                  </button>
-                </div>
+              key={key}
+              className={
+                "relative h-20 p-1 border rounded flex flex-col justify-start " +
+                (isSelected
+                  ? "bg-orange-100 border-orange-300"
+                  : "bg-white dark:bg-gray-800")
+              }
+            >
+              <div className="flex items-center justify-start">
+                <button
+                  onClick={() => setSelected(dt)}
+                  className="text-base font-semibold"
+                  aria-label={`Selecionar dia ${key}`}
+                >
+                  {dt.getDate()}
+                </button>
+              </div>
 
-                <div className="mt-1 flex-1 overflow-auto text-xs">
+              <div className="mt-1 flex-1 overflow-auto text-xs">
                 {(events[key] || []).slice(0, 3).map((ev, idx) => (
                   <div key={idx} className="flex items-center justify-between gap-2">
                     <span className="truncate">{ev}</span>
@@ -147,18 +177,18 @@ export default function Calendar() {
                 {hasEvents && (events[key] || []).length > 3 && (
                   <div className="text-xs text-gray-500">+{(events[key] || []).length - 3} mais</div>
                 )}
-                </div>
-
-                {/* botão adicionar posicionado no canto inferior direito */}
-                <button
-                  onClick={() => addEventFor(dt)}
-                  title="Adicionar evento"
-                  className="absolute bottom-2 right-2 text-sm px-2 py-0.5 rounded bg-orange-400 text-white hover:bg-orange-500 shadow-sm"
-                  aria-label={`Adicionar evento para ${key}`}
-                >
-                  +
-                </button>
               </div>
+
+              {/* botão adicionar posicionado no canto inferior direito */}
+              <button
+                onClick={() => addEventFor(dt)}
+                title="Adicionar evento"
+                className="absolute bottom-2 right-2 text-sm px-2 py-0.5 rounded bg-orange-400 text-white hover:bg-orange-500 shadow-sm"
+                aria-label={`Adicionar evento para ${key}`}
+              >
+                +
+              </button>
+            </div>
           );
         })}
       </div>
