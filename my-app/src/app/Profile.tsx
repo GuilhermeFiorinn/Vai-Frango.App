@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 
-// 1. ATUALIZANDO O TIPO PARA INCLUIR OS NOVOS DADOS
 type Medidas = {
   peitoCm: number;
   cinturaCm: number;
@@ -12,10 +11,10 @@ type Medidas = {
 type ProfileData = {
   nome: string;
   email: string;
-  fotoUrl: string; // Novo campo para a foto
+  fotoUrl: string;
   alturaCm: number;
   pesoKg: number;
-  medidas: Medidas; // Novo objeto para as medidas
+  medidas: Medidas;
 };
 
 export default function Profile() {
@@ -87,7 +86,6 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* --- Seção: Medidas Específicas --- */}
         <div>
           <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 border-b pb-2">
             Medidas Específicas (cm)

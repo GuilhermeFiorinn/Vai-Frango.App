@@ -8,7 +8,7 @@ import AbaTreino from "./pageTreino";
 export default function Home() {
 	const [active, setActive] = useState<"Treino" | "Agenda" | "Perfil">("Treino");
 
-	// alturas em px — ajuste conforme preferir
+	// alturas em px 
 	const bannerHeight = 120;
 	const headerHeight = 64;
 

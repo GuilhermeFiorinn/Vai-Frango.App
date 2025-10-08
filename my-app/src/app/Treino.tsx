@@ -68,8 +68,6 @@ export default function TreinoDoDia() {
     }
   }
 
-  // --- Lógica de renderização (o que aparece na tela) ---
-
   if (carregando) return <div className="text-center p-10">Procurando seu treino...</div>;
   if (erro) return <div className="text-center p-10 text-red-500">{erro}</div>;
   if (!treino || !dataDoTreino) {
@@ -140,13 +138,13 @@ export default function TreinoDoDia() {
                   onChange={() => handleToggleFinished(index)}
                   className="h-6 w-6 rounded border-gray-300 text-orange-600 focus:ring-orange-500 mr-4 cursor-pointer"
                 />
-                <div className="flex-1">
+                <div className="flex-1 flex justify-between items-center">
                   <h3 className={`text-lg font-semibold text-gray-900 dark:text-gray-200 ${exercicio.finished ? 'line-through text-gray-500 dark:text-gray-400' : ''}`}>
                     {exercicio.name}
                   </h3>
                   {exercicio.duration && (
-                    <p className={`text-sm text-gray-500 dark:text-gray-400 mt-1 ${exercicio.finished ? 'line-through' : ''}`}>
-                      Duração: {exercicio.duration}
+                    <p className={`text-sm font-mono text-gray-600 dark:text-gray-400 ${exercicio.finished ? 'line-through' : ''}`}>
+                      {exercicio.duration}
                     </p>
                   )}
                 </div>

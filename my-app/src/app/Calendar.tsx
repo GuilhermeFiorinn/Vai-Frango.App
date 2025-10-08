@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Exercise, addExercise, removeExercise } from "../lib/exercises";
 
-// Funções utilitárias (sem alterações)
+// Funções utilitárias pra fazer agenda funcionar
 function startOfMonth(date: Date) {
   return new Date(date.getFullYear(), date.getMonth(), 1);
 }
@@ -13,7 +13,7 @@ function daysInMonth(date: Date) {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 }
 function formatKey(d: Date) {
-  return d.toISOString().slice(0, 10); // YYYY-MM-DD
+  return d.toISOString().slice(0, 10); // YYYY-MM-DD(cuidar)
 }
 
 export default function Calendar() {

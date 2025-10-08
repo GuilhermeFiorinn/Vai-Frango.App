@@ -18,6 +18,11 @@
       "name": "Polichinelo",
       "duration": "3 min",
       "finished": false
+    },
+    {
+      "name": "Corrida Parada",
+      "duration": "5 min",
+      "finished": false
     }
   ],
   "2025-10-07": [],
